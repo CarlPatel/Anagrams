@@ -39,7 +39,6 @@ const slotsDiv = document.querySelector('.slots');
 for (let i = 0; i < numOfLetters; i++) {
     let slotDiv = document.createElement('div');
     slotDiv.classList.add('slot');
-    slotDiv.classList.add('empty');
     slotDiv.dataset.index = i;
     slotDiv.addEventListener('click', () => deselectLetter(i));
     slotsDiv.appendChild(slotDiv);
@@ -117,7 +116,7 @@ updateScoreDisplay();
 function selectLetter(letter, index) {
     if (currentWord.length < numOfLetters) {
         currentWord.push({ letter, index });
-        document.querySelectorAll('.letter')[index].style.visibility = 'hidden';
+        document.querySelectorAll('.letter')[index].classList.toggle('hidden');
         updateSlots();
     }
 }
@@ -127,7 +126,7 @@ function deselectLetter(slotIndex) {
     if (currentWord[slotIndex]) {
         const index = currentWord[slotIndex].index;
         currentWord.splice(slotIndex, 1);
-        document.querySelectorAll('.letter')[index].style.visibility = 'visible';
+        document.querySelectorAll('.letter')[index].classList.toggle('hidden');
         updateSlots();
     }
 }
@@ -137,12 +136,10 @@ function updateSlots() {
     document.querySelectorAll('.slot').forEach((slot, index) => {
         if (currentWord[index]) {
             slot.innerText = currentWord[index].letter;
-            slot.classList.remove('empty');
             slot.classList.add('filled');
         } else {
             slot.innerText = '';
             slot.classList.remove('filled');
-            slot.classList.add('empty');
         }
     });
 }
