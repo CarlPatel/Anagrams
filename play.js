@@ -39,6 +39,7 @@ const slotsDiv = document.querySelector('.slots');
 for (let i = 0; i < numOfLetters; i++) {
     let slotDiv = document.createElement('div');
     slotDiv.classList.add('slot');
+    slotDiv.classList.add('empty');
     slotDiv.dataset.index = i;
     slotDiv.addEventListener('click', () => deselectLetter(i));
     slotsDiv.appendChild(slotDiv);
@@ -134,7 +135,15 @@ function deselectLetter(slotIndex) {
 // Update the slots with the current word
 function updateSlots() {
     document.querySelectorAll('.slot').forEach((slot, index) => {
-        slot.innerText = currentWord[index] ? currentWord[index].letter : '';
+        if (currentWord[index]) {
+            slot.innerText = currentWord[index].letter;
+            slot.classList.remove('empty');
+            slot.classList.add('filled');
+        } else {
+            slot.innerText = '';
+            slot.classList.remove('filled');
+            slot.classList.add('empty');
+        }
     });
 }
 
@@ -161,7 +170,7 @@ function calculateScore(word) {
 // Reset the slots without shuffling the letters
 function resetSlots() {
     currentWord = [];
-    document.querySelectorAll('.slot').forEach(slot => slot.innerText = '');
+    updateSlots();
     document.querySelectorAll('.letter').forEach(letter => letter.style.visibility = 'visible');
 }
 
