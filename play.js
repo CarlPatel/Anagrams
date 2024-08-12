@@ -39,13 +39,13 @@ const slotsDiv = document.querySelector('.slots');
 for (let i = 0; i < numOfLetters; i++) {
     let slotDiv = document.createElement('div');
     slotDiv.classList.add('slot');
-    slotDiv.dataset.slotIndex = i;
+    slotDiv.dataset.index = i;
     slotDiv.addEventListener('click', () => deselectLetter(i));
     slotsDiv.appendChild(slotDiv);
 }
 
 // Create Enter Button and Functionality
-document.getElementById('submitButton').addEventListener('click', () => {
+document.getElementById('submit-button').addEventListener('click', () => {
     const word = currentWord.map(item => item.letter).join('').toUpperCase();
     if (word.length < 3) {
         alert('Word must be at least 3 letters long!');

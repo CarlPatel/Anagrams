@@ -2,24 +2,27 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 100%;
-    max-width: 600px;
+    width: 85%;
+    max-width: 500px;
     margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #ffffff;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
     border-radius: 8px;
 }
 
 h1 {
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 #timer, #score {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 
@@ -30,11 +33,11 @@ h1 {
 }
 
 .slot {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: 2px solid #333;
-    line-height: 50px;
-    font-size: 24px;
+    line-height: 40px;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -45,16 +48,33 @@ h1 {
 }
 
 .letter {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: 2px solid #333;
-    line-height: 50px;
-    font-size: 24px;
+    line-height: 40px;
+    font-size: 20px;
     cursor: pointer;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 10px 30px;
+    font-size: 16px;
     cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px #666;
+}
+
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
 }
