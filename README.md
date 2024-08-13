@@ -6,7 +6,7 @@
    - Note: Use Safari, as other browsers may not support the direct installation of `.mobileconfig` files.
 
 2. **Download this `.mobileconfig` file.**
-   - [DOWNLOAD HERE](Anagram.mobileconfig).
+   - [DOWNLOAD HERE](https://github.com/CarlPatel/Anagrams/releases/download/v1.0/Anagram.mobileconfig).
 
 3. **Tap on the "Allow" button** when prompted to confirm the download.
 
