@@ -1,12 +1,13 @@
 let numOfLetters = 6;
 let score = 0;
-let time = 10;  // in seconds
+let timer = 100;  // in seconds
 let currentWord = [];
 let usedWords = new Set();
 let validWords = new Set();
 const wordsDiv = document.getElementById('words');
 const scoreDiv = document.getElementById('score');
 let timerInterval;
+let messageTimeout;
 
 // Fetch valid words before starting the game
 fetch("valid_words.txt")
@@ -43,6 +44,7 @@ function startGame() {
     startTimer();
     updateWordsDisplay();
     updateScoreDisplay();
+    updateSlots();
 }
 
 // Initialize the game
@@ -73,10 +75,6 @@ function initGame() {
     // Create Enter Button and Functionality
     document.getElementById('submit-button').addEventListener('click', () => {
         const word = currentWord.map(item => item.letter).join('').toUpperCase();
-        if (word.length < 3) {
-            alert('Word must be at least 3 letters long!');
-            return;
-        }
         if (!usedWords.has(word)) {
             if (validWords.has(word)) {
                 usedWords.add(word);
@@ -84,12 +82,12 @@ function initGame() {
                 const wordScore = calculateScore(word);
                 score += wordScore;
                 updateScoreDisplay();
-                alert(`${word}: +${wordScore}`);
+                updateMessage(`+${wordScore}`, 'green');
             } else {
-                alert('Not a valid word!');
+                updateMessage('Not in the vocabulary', 'red');
             }
         } else {
-            alert('This word has already been used!');
+            updateMessage('Already used', 'red');
         }
         resetSlots();
     });
@@ -97,7 +95,6 @@ function initGame() {
 
 // Start the timer
 function startTimer() {
-    let timer = time;
     updateTimerDisplay(timer);
     timerInterval = setInterval(() => {
         timer--;
@@ -162,8 +159,39 @@ function updateSlots() {
             slot.classList.remove('filled');
         }
     });
+    if (currentWord.length >= 3) {
+        document.getElementById('submit-button').disabled = false;
+    } else {
+        document.getElementById('submit-button').disabled = true;
+    };
 }
 
+
+
+function updateMessage(message, color = 'black') {
+    const messageDiv = document.querySelector('.message');
+
+    // If there's an existing timeout, clear it
+    if (messageTimeout) {
+        clearTimeout(messageTimeout);
+        messageDiv.classList.remove('show');
+    }
+
+    // Set the new message and start the fade-in process
+    const word = currentWord.map(item => item.letter).join('').toUpperCase();
+    messageDiv.innerText = `${word} (${message})`;
+    messageDiv.style.color = color;
+    messageDiv.classList.add('show');
+
+    // Schedule the fade-out process
+    messageTimeout = setTimeout(() => {
+        messageDiv.classList.remove('show');
+        // Clear the text after the fade-out completes
+        messageTimeout = setTimeout(() => {
+            messageDiv.innerText = '';
+        }, 500); // Match this duration to your CSS transition time (0.5s)
+    }, 1000);
+}
 
 
 // Calculate the score based on the word length
