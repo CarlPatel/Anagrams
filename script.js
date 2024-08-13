@@ -1,6 +1,6 @@
 let numOfLetters = 6;
 let score = 0;
-let timer = 100;  // in seconds
+let timer = 60;  // in seconds
 let currentWord = [];
 let usedWords = new Set();
 let validWords = new Set();
@@ -219,11 +219,27 @@ function resetSlots() {
 
 // Generate an array of random letters
 function getRandLetters(int) {
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
     const randomLetters = [];
-    for (let i = 0; i < int; i++) {
+
+    // Ensure at least 2 vowels
+    for (let i = 0; i < 2; i++) {
+        const randomVowel = vowels[Math.floor(Math.random() * vowels.length)];
+        randomLetters.push(randomVowel);
+    }
+
+    // Generate the remaining letters
+    for (let i = 2; i < int; i++) {
         const randomIndex = Math.floor(Math.random() * 26);
         const randomLetter = String.fromCharCode(65 + randomIndex);
         randomLetters.push(randomLetter);
     }
+
+    // Shuffle the array to mix vowels with other letters
+    for (let i = randomLetters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [randomLetters[i], randomLetters[j]] = [randomLetters[j], randomLetters[i]];
+    }
+
     return randomLetters;
 }
