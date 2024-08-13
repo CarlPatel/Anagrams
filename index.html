@@ -1,29 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <title>Anagram Game</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Anagram Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div class="container">
+    <div class="container" id="start-container" style="display: block;">
         <h1>How to play:</h1>
-        <p>Combine letters to make words. Make as many words as you can in 60 seconds</p>
+        <p>Combine letters to make words. Make as many words as you can in 60 seconds.</p>
 
-        <div class="letters">
-            <div class="letter" data-index="0">A</div>
-            <div class="letter" data-index="1">f</div>
-            <div class="letter" data-index="2">C</div>
-            <div class="letter" data-index="3">D</div>
-            <div class="letter" data-index="4">E</div>
-            <div class="letter" data-index="5">F</div>
+        <div class="letters" id="static-letters">
+            <div class="letter static">A</div>
+            <div class="letter static">F</div>
+            <div class="letter static">C</div>
+            <div class="letter static">D</div>
+            <div class="letter static">E</div>
+            <div class="letter static">G</div>
         </div>
 
-        <button id="start-button" onclick="location.href='game.html';">Start</button>
+        <button id="start-button">Start</button>
     </div>
+
+    <div class="container" id="game-container" style="display: none;">
+        <h1>Anagram Game</h1>
+        <div class="timer">00:00</div>
+        <div class="words">Words: 0</div>
+        <div class="score">Score: 0000</div>
+        <div class="slots">
+            <!-- Slots will be inserted here by JavaScript -->
+        </div>
+        <div class="letters" id="game-letters">
+            <!-- Letters will be inserted here by JavaScript -->
+        </div>
+        <button id="submit-button">ENTER</button>
+    </div>
+
+    <div class="container" id="result-container" style="display: none;">
+        <h1>Time's Up!</h1>
+        <div class="score" id="final-score">Your Score: 0000</div>
+        <button id="play-again-button" onclick="location.href='index.html';">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

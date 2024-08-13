@@ -32,7 +32,7 @@ p {
     font-weight: bold;
 }
 
-#timer, #score {
+.timer, .score, .words {
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -64,6 +64,10 @@ p {
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     display: inline-block;
+}
+
+.static {
+    pointer-events: none;
 }
 
 .letters {
