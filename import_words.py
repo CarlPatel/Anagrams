@@ -34,17 +34,13 @@ def extract_text_from_url(url):
         print(f"Failed to retrieve content from {url}. HTTP Status code: {response.status_code}")
         return [], True  # Stop further processing in case of an error
 
-def is_normal_word(word):
-    # Check if the word contains only alphabetic characters
-    return word.isalpha()
-
 def append_to_file(filename, words, seen_words):
     with open(filename, 'a') as file:
         for word in words:
             # Only append words that are one word long, contain only alphabetic characters, and are not already seen
-            if len(word.split()) == 1 and is_normal_word(word) and word not in seen_words:
-                file.write(f"{word}\n")
-                seen_words.add(word)  # Add the word to the set of seen words
+            if len(word.split()) == 1 and word.isalpha() and word.upper() not in seen_words:
+                file.write(f"{word.upper}\n")
+                seen_words.add(word.upper())  # Add the uppercase version of the word to the set of seen words
 
 def scrape_dictionary_by_alphabet():
     base_url = "https://www.merriam-webster.com/browse/dictionary/"

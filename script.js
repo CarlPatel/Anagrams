@@ -51,14 +51,15 @@ function startGame() {
 function initGame() {
     // Display the random letters and add event listeners
     const lettersDiv = document.querySelector('.letters#game-letters');
-    const Randletters = getRandLetters(numOfLetters);
-    //const Randletters = ['A', 'N', 'A', 'G', 'R', 'M'];
+    const randLetters = getSemiRandLetters(numOfLetters);
+    console.log(findAnagrams(randLetters));
+    //const randLetters = ['A', 'N', 'A', 'G', 'R', 'M'];
     for (let i = 0; i < numOfLetters; i++) {
         let letterDiv = document.createElement('div');
         letterDiv.classList.add('letter');
-        letterDiv.innerText = Randletters[i];
+        letterDiv.innerText = randLetters[i];
         letterDiv.dataset.index = i;
-        letterDiv.addEventListener('click', () => selectLetter(Randletters[i], i));
+        letterDiv.addEventListener('click', () => selectLetter(randLetters[i], i));
         lettersDiv.appendChild(letterDiv);
     };
 
@@ -242,4 +243,45 @@ function getRandLetters(int) {
     }
 
     return randomLetters;
+}
+
+function getSemiRandLetters(int) {
+    const wordsArray = Array.from(validWords);
+    const filteredWords = wordsArray.filter(word => word.length === int);
+    const randomWord = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+    console.log(randomWord);
+
+    const letters = randomWord.split('');
+    for (let i = letters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [letters[i], letters[j]] = [letters[j], letters[i]];
+    }
+
+    return letters;
+}
+
+function findAnagrams(lettersArray) {
+    // Sort the letters array to create a key for comparison
+    const sortedLetters = lettersArray.sort().join('');
+
+    const isSubset = (small, large) => {
+        let i = 0;
+        let j = 0;
+        while (i < small.length && j < large.length) {
+            if (small[i] === large[j]) {
+                i++;
+            }
+            j++;
+        }
+        return i === small.length;
+    };
+
+    // Convert the set to an array and filter to find words that are anagrams or subsets
+    const anagrams = [...validWords].filter(word => {
+        // Sort the word to create a comparable key
+        const sortedWord = word.split('').sort().join('');
+        return word.length > 3 && isSubset(sortedWord, sortedLetters);
+    });
+
+    return anagrams;
 }
