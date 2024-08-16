@@ -9,15 +9,24 @@ let timerInterval;
 let messageTimeout;
 let revealAnagrams = false;
 
-// Fetch valid words before starting the game
 fetch("res/aspell/valid_aspell_words.txt")
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok: " + response.statusText);
+        }
+        return response.text();
+    })
     .then(text => {
         text.split('\n').forEach(word => {
             validWords.add(word.trim().toUpperCase());
         });
+        console.log("Valid words loaded:", validWords);
+    })
+    .catch(error => {
+        console.error("There was a problem with the fetch operation:", error);
     });
-    
+
+
 initHowToPlay();
 
 
