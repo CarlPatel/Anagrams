@@ -10,7 +10,7 @@ let messageTimeout;
 let revealAnagrams = false;
 
 // Fetch valid words before starting the game
-fetch("valid_words.txt")
+fetch("res/aspell/valid_aspell_words.txt")
     .then(response => response.text())
     .then(text => {
         text.split('\n').forEach(word => {
