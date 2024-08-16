@@ -205,6 +205,10 @@ function populateScrollableBox() {
         scoreItem.id = 'score';
 
         if (usedWords.has(word) || revealAnagrams) {
+            if (usedWords.has(word)) {
+                anagramItem.style.fontWeight = 'bold';
+                scoreItem.style.fontWeight = 'bold';
+            }
             anagramItem.textContent = word;
             scoreItem.textContent = wordScore;
         } else {
@@ -360,28 +364,34 @@ function getSemiRandLetters(int) {
 }
 
 function findAllAnagrams() {
-    // Sort the letters array to create a key for comparison
-    const sortedLetters = randLetters.sort().join('');
+    let result = [];
 
-    const isSubset = (small, large) => {
-        let i = 0;
-        let j = 0;
-        while (i < small.length && j < large.length) {
-            if (small[i] === large[j]) {
-                i++;
-            }
-            j++;
+    // Recursive function to generate combinations
+    function generateCombinations(subword, remainingLetters) {
+        // If the subword is a valid word that hasn't been used and has at least 3 letters, add it to the result
+        if (validWords.has(subword) && subword.length >= 3 && !result.includes(subword)) {
+            result.push(subword);
         }
-        return i === small.length;
-    };
 
-    // Convert the set to an array and filter to find words that are anagrams or subsets
-    const anagrams = [...validWords].filter(word => {
-        // Sort the word to create a comparable key
-        const sortedWord = word.split('').sort().join('');
-        return word.length > 3 && isSubset(sortedWord, sortedLetters);
+        // Recursive Call
+        for (let i = 0; i < remainingLetters.length; i++) {
+            generateCombinations(
+                subword + remainingLetters[i],
+                remainingLetters.slice(0, i).concat(remainingLetters.slice(i + 1))
+            );
+        }
+    }
+
+    generateCombinations("", randLetters);
+
+    // Sort the result array
+    result.sort((a, b) => {
+        if (b.length !== a.length) {
+            return b.length - a.length; // Sort by length (descending)
+        }
+        return a.localeCompare(b); // Sort alphabetically
     });
 
-    return anagrams;
+    return result;
 }
 
