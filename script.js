@@ -20,7 +20,7 @@ fetch("res/aspell/valid_aspell_words.txt")
         text.split('\n').forEach(word => {
             validWords.add(word.trim().toUpperCase());
         });
-        console.log("Valid words loaded:", validWords);
+        console.log("Valid words loaded:", validWords.size);
     })
     .catch(error => {
         console.error("There was a problem with the fetch operation:", error);

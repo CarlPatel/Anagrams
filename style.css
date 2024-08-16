@@ -41,6 +41,7 @@ body {
 }
 
 .anagram-item {
+    font-family: Consolas, "Lucida Console", monospace;
     padding: 5px;
 }
 
@@ -80,7 +81,6 @@ p {
 .score {
     font-size: 18px;
     margin: 0 auto 5px auto;
-    /* Center horizontally with auto left and right margins */
     text-align: left;
     display: block;
     width: 125px;
