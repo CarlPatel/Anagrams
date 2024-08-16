@@ -12,14 +12,51 @@ body {
 }
 
 .container {
-    width: 85%;
+    width: 85vw;
     max-width: 500px;
+    max-height: 1000px;
     margin: auto;
     padding: 15px;
     background-color: #ffffff;
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
-    border-radius: 8px;
+    border-radius: 10px;
 }
+
+.scrollable-box {
+    width: 50%;
+    max-height: 25vh;
+
+    margin: auto;
+    padding: 15px;
+    background-color: transparent;
+    cursor: default;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollable-box::-webkit-scrollbar {
+    display: none;
+}
+
+.anagram-item {
+    padding: 5px;
+}
+
+.anagram-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.anagram-line-break {
+    border: 1px solid black;
+    width: 75%;
+    margin: 20px auto;
+
+}
+
 
 h1 {
     margin-top: 0px;
@@ -33,15 +70,17 @@ p {
     font-weight: bold;
 }
 
-.timer{
+.timer {
     font-size: 18px;
     margin-bottom: 20px;
     font-family: Consolas, "Lucida Console", monospace;
 }
 
-.words, .score{
+.words,
+.score {
     font-size: 18px;
-    margin: 0 auto 5px auto; /* Center horizontally with auto left and right margins */
+    margin: 0 auto 5px auto;
+    /* Center horizontally with auto left and right margins */
     text-align: left;
     display: block;
     width: 125px;
@@ -74,7 +113,8 @@ p {
     cursor: pointer;
     text-align: center;
     font-family: "Arial", sans-serif;
-    background-color: #f2d28b; /* Light wood color */
+    background-color: #f2d28b;
+    /* Light wood color */
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
 }
@@ -100,7 +140,8 @@ p {
     cursor: pointer;
     text-align: center;
     font-family: "Arial", sans-serif;
-    background-color: #f2d28b; /* Light wood color */
+    background-color: #f2d28b;
+    /* Light wood color */
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
 }
@@ -144,13 +185,15 @@ button:disabled {
 }
 
 .message {
-    height: 30px; /* Adjust the height as needed */
+    height: 30px;
+    /* Adjust the height as needed */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px; /* Adjust the font size as needed */
+    font-size: 16px;
+    /* Adjust the font size as needed */
 }
 
 .message.show {

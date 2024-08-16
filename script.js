@@ -2,12 +2,12 @@ let numOfLetters = 6;
 let score = 0;
 let timer = 60;  // in seconds
 let currentWord = [];
+let randLetters = [];
 let usedWords = new Set();
 let validWords = new Set();
-const wordsDiv = document.getElementById('words');
-const scoreDiv = document.getElementById('score');
 let timerInterval;
 let messageTimeout;
+let revealAnagrams = false;
 
 // Fetch valid words before starting the game
 fetch("valid_words.txt")
@@ -51,9 +51,9 @@ function startGame() {
 function initGame() {
     // Display the random letters and add event listeners
     const lettersDiv = document.querySelector('.letters#game-letters');
-    const randLetters = getSemiRandLetters(numOfLetters);
-    console.log(findAnagrams(randLetters));
-    //const randLetters = ['A', 'N', 'A', 'G', 'R', 'M'];
+    randLetters = getSemiRandLetters(numOfLetters);
+    //randLetters = ['A', 'N', 'A', 'G', 'R', 'M'];
+    console.log(findAllAnagrams());
     for (let i = 0; i < numOfLetters; i++) {
         let letterDiv = document.createElement('div');
         letterDiv.classList.add('letter');
@@ -102,9 +102,7 @@ function startTimer() {
         updateTimerDisplay(timer);
         if (timer === 0) {
             clearInterval(timerInterval);
-            document.getElementById('game-container').style.display = 'none';
-            document.getElementById('result-container').style.display = 'block';
-            document.querySelector('.score#final-score').innerText = `Score: ${score.toString().padStart(4, '0')}`;
+            gameOver();
         }
     }, 1000);
 }
@@ -166,6 +164,107 @@ function updateSlots() {
         document.getElementById('submit-button').disabled = true;
     };
 }
+
+
+function gameOver() {
+    document.getElementById('game-container').style.display = 'none';
+    document.getElementById('result-container').style.display = 'block';
+    document.querySelector('.score#final-score').innerText = `Score: ${score.toString().padStart(4, '0')}`;
+    document.querySelector('.words#final-word-count').innerText = `Words: ${usedWords.size}`;
+
+    document.querySelector('.scrollable-box').addEventListener('click', () => {
+        revealAnagrams = !revealAnagrams;
+        populateScrollableBox();
+    });
+
+    populateScrollableBox();
+}
+
+
+function populateScrollableBox() {
+    let totalWordCount = 0;
+    let totalScore = 0;
+
+    const allAnagrams = findAllAnagrams();
+    const scrollableBox = document.querySelector('.scrollable-box');
+    scrollableBox.innerHTML = '';
+    
+    // Populate the box with the anagrams
+    allAnagrams.forEach(word => {
+        const anagramLine = document.createElement('div');
+        anagramLine.classList.add('anagram-line');
+        scrollableBox.appendChild(anagramLine);
+
+        const anagramItem = document.createElement('div');
+        anagramItem.classList.add('anagram-item');
+        anagramItem.id = 'word';
+        
+        let wordScore = calculateScore(word);
+        const scoreItem = document.createElement('div');
+        scoreItem.classList.add('anagram-item');
+        scoreItem.id = 'score';
+
+        if (usedWords.has(word) || revealAnagrams) {
+            anagramItem.textContent = word;
+            scoreItem.textContent = wordScore;
+        } else {
+            anagramItem.textContent = '?'.repeat(word.length);
+            scoreItem.textContent = '?'.repeat(wordScore.toString().length);
+        }
+
+        anagramLine.appendChild(anagramItem);
+        anagramLine.appendChild(scoreItem);
+        
+        totalWordCount++;
+        totalScore += wordScore;
+    });
+
+
+    
+    const hLine = document.createElement('hr');
+    hLine.classList.add('anagram-line-break');
+    scrollableBox.appendChild(hLine);
+
+
+
+    const totalWordCountLine = document.createElement('div');
+    totalWordCountLine.classList.add('anagram-line');
+    totalWordCountLine.id = 'totals';
+    scrollableBox.appendChild(totalWordCountLine);
+
+    const totalWordCountString = document.createElement('div');
+    totalWordCountString.textContent = `Total Words: `;
+    totalWordCountString.classList.add('anagram-item');
+    totalWordCountString.id = 'word';
+    totalWordCountLine.appendChild(totalWordCountString);
+
+    const totalWordCountItem = document.createElement('div');
+    totalWordCountItem.textContent = `${totalWordCount}`;
+    totalWordCountItem.classList.add('anagram-item');
+    totalWordCountItem.id = 'score';
+    totalWordCountLine.appendChild(totalWordCountItem);
+
+
+
+    const totalScoreLine = document.createElement('div');
+    totalScoreLine.classList.add('anagram-line');
+    totalScoreLine.id = 'totals';
+    scrollableBox.appendChild(totalScoreLine);
+
+    const totalScoreString = document.createElement('div');
+    totalScoreString.textContent = `Total Score: `;
+    totalScoreString.classList.add('anagram-item');
+    totalScoreString.id = 'word';
+    totalScoreLine.appendChild(totalScoreString);
+
+    const totalScoreItem = document.createElement('div');
+    totalScoreItem.textContent = `${totalScore}`;
+    totalScoreItem.classList.add('anagram-item');
+    totalScoreItem.id = 'score';
+    totalScoreLine.appendChild(totalScoreItem);
+}
+
+
 
 
 
@@ -260,9 +359,9 @@ function getSemiRandLetters(int) {
     return letters;
 }
 
-function findAnagrams(lettersArray) {
+function findAllAnagrams() {
     // Sort the letters array to create a key for comparison
-    const sortedLetters = lettersArray.sort().join('');
+    const sortedLetters = randLetters.sort().join('');
 
     const isSubset = (small, large) => {
         let i = 0;
@@ -285,3 +384,4 @@ function findAnagrams(lettersArray) {
 
     return anagrams;
 }
+
