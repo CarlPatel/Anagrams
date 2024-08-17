@@ -30,12 +30,25 @@ To download this game onto your iPhone, check out the [installation section](#io
 
 
 
-## IOS Installation Guide
+## iOS Installation Guide
 
+### Option 1: Add Webpage to Home Screen
+1. **Open Safari** on your iPhone.
+2. **Go to the hosted website.**
+   - https://carlpatel.github.io/Anagrams/
+3. **Click the share button.**
+   - It looks like a box with an arrow pointing up out of it.
+4. **Click "Add to Home Screen" button**
+5. **Click "Add" again** in the top right corner to confirm.
+
+This will add a bookmark to the homescreen of your iPhone allowing you to play the game in full screen mode.
+
+
+### Option 2: Install the Configuration Profile
 1. **Open this page on your iPhone.**
    - Use Safari, as other browsers may not support the direct installation of `.mobileconfig` files.
 2. **Download this `.mobileconfig` file.**
-   - [DOWNLOAD HERE](https://github.com/CarlPatel/Anagrams/releases/download/v1.0/Anagram.mobileconfig).
+   - [DOWNLOAD HERE](https://github.com/CarlPatel/Anagrams/releases/download/v2.0/Anagram.mobileconfig).
 3. **Tap on the "Allow" button** when prompted to confirm the download.
 4. **Go to Settings on your iPhone.**
 5. **Tap on "Profile Downloaded" at the top**
@@ -45,7 +58,7 @@ To download this game onto your iPhone, check out the [installation section](#io
 7. **Tap "Install" again** to confirm.
 8. **Tap "Done"** once the installation is complete.
 
-This will download the configured profile along with a web clip on the homescreen of your iPhone.
+This will download the configured profile along with a web clip on the homescreen of your iPhone allowing you to play the game in full screen mode.
 
 
 ## Uninstalling the Profile
