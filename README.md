@@ -61,7 +61,7 @@ This will add a bookmark to the homescreen of your iPhone allowing you to play t
 This will download the configured profile along with a web clip on the homescreen of your iPhone allowing you to play the game in full screen mode.
 
 
-## Uninstalling the Profile
+### Uninstalling the Configuration Profile
 
 1. **Open Settings** on your iPhone, go to General &rarr; VPN & Device Management and click `Anagram Game`
 2. **Tap on the `Anagram Game` profile**
