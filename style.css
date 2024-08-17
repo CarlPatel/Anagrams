@@ -1,18 +1,18 @@
 :root {
     --color-text: #000000;
-    --color-background: #F1F1F1;
-    --color-background-secondary: #E4E4E4;
+    --color-background: #cccccc;
+    --color-background-secondary: #dddddd;
     --color-shadow: #00000050;
     --color-disabled: #00000025;
     --color-green: #00AA00;
     --color-red: #DD0000;
 }
-  
+
 @media (prefers-color-scheme: dark) {
     :root {
         --color-text: #FFFFFF;
-        --color-background: #4C4C4C;
-        --color-background-secondary: #1D1D1D;
+        --color-background: #555555;
+        --color-background-secondary: #333333;
         --color-shadow: #FFFFFF50;
         --color-disabled: #FFFFFF25;
         --color-green: #00CC00;
@@ -20,11 +20,17 @@
     }
 }
 
+
+html {
+    background-color: var(--color-background);
+}
+
 body {
     font-family: Arial, sans-serif;
+    font-size: 16px;
     text-align: center;
     color: var(--color-text);
-    background-color: var(--color-background);
+    background-color: transparent;
     margin: 0;
     padding: 0;
     display: flex;
@@ -45,10 +51,11 @@ body {
 }
 
 .scrollable-box {
-    width: 60%;
+    width: 75%;
+    max-width: 200px;
     max-height: 25vh;
 
-    margin: auto;
+    margin: 20px auto;
     padding: 15px;
     background-color: transparent;
     cursor: default;
@@ -69,16 +76,20 @@ body {
 }
 
 .anagram-line {
+    width: 75%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
 }
 
+.anagram-line#totals {
+    width: 100%;
+}
+
 .anagram-line-break {
     border: 1px solid var(--color-text);
-    width: 75%;
+    width: 50%;
     margin: 20px auto;
-
 }
 
 
@@ -94,19 +105,19 @@ p {
     font-weight: bold;
 }
 
-.timer {
+.time,
+.words,
+.score {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin: auto;
     font-family: Consolas, "Lucida Console", monospace;
+    flex: 1;
 }
 
-.words, .score {
-    font-size: 18px;
+.count-line {
+    display: flex;
+    justify-content: center;
     margin: 0 auto 5px auto;
-    text-align: left;
-    display: block;
-    width: 125px;
-    font-family: Consolas, "Lucida Console", monospace;
 }
 
 .slots {
@@ -157,13 +168,17 @@ p {
     line-height: 40px;
     font-size: 24px;
     font-weight: bold;
-    color: #000;
+    color: #000000;
     cursor: pointer;
     text-align: center;
     font-family: "Arial", sans-serif;
     background-color: #f2d28b;
     box-shadow: 0px 3px 3px var(--color-shadow);
     border-radius: 5px;
+}
+
+.letter.static {
+    box-shadow: none;
 }
 
 .letter.hidden {
@@ -176,7 +191,7 @@ p {
 
 button {
     padding: 10px 30px;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     background-color: #33CC00;
     color: white;

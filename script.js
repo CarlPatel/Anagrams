@@ -1,6 +1,6 @@
 let numOfLetters = 6;
 let score = 0;
-let timer = 6;  // in seconds
+let timer = 60;  // in seconds
 let currentWord = [];
 let randLetters = [];
 let usedWords = new Set();
@@ -122,17 +122,18 @@ function startTimer() {
 function updateTimerDisplay(timer) {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
-    document.querySelector('.timer').innerText = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    document.querySelector('.time#minutes').innerText = `${minutes < 10 ? '0' : ''}${minutes}:`;
+    document.querySelector('.time#seconds').innerText = `${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
 // Update the words display
 function updateWordsDisplay() {
-    document.querySelector('.words').innerText = `Words: ${usedWords.size}`;
+    document.querySelector('.words#game').innerText = `\u00A0${usedWords.size}`;
 }
 
 // Update the score display to have 4 digits
 function updateScoreDisplay() {
-    document.querySelector('.score').innerText = `Score: ${score.toString().padStart(4, '0')}`;
+    document.querySelector('.score#game').innerText = `\u00A0${score.toString().padStart(4, '0')}`;
 }
 
 
@@ -180,8 +181,8 @@ function updateSlots() {
 function gameOver() {
     document.getElementById('game-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.querySelector('.score#final-score').innerText = `Score: ${score.toString().padStart(4, '0')}`;
-    document.querySelector('.words#final-word-count').innerText = `Words: ${usedWords.size}`;
+    document.querySelector('.words#final-count').innerText = `\u00A0${usedWords.size}`;
+    document.querySelector('.score#final-score').innerText = `\u00A0${score.toString().padStart(4, '0')}`;
 
     document.querySelector('.scrollable-box').addEventListener('click', () => {
         revealAnagrams = !revealAnagrams;
@@ -199,7 +200,7 @@ function populateScrollableBox() {
     const allAnagrams = findAllAnagrams();
     const scrollableBox = document.querySelector('.scrollable-box');
     scrollableBox.innerHTML = '';
-    
+
     // Populate the box with the anagrams
     allAnagrams.forEach(word => {
         const anagramLine = document.createElement('div');
@@ -209,7 +210,7 @@ function populateScrollableBox() {
         const anagramItem = document.createElement('div');
         anagramItem.classList.add('anagram-item');
         anagramItem.id = 'word';
-        
+
         let wordScore = calculateScore(word);
         const scoreItem = document.createElement('div');
         scoreItem.classList.add('anagram-item');
@@ -229,13 +230,13 @@ function populateScrollableBox() {
 
         anagramLine.appendChild(anagramItem);
         anagramLine.appendChild(scoreItem);
-        
+
         totalWordCount++;
         totalScore += wordScore;
     });
 
 
-    
+
     const hLine = document.createElement('hr');
     hLine.classList.add('anagram-line-break');
     scrollableBox.appendChild(hLine);

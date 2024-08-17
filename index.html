@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Anagrams</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container" id="start-container" style="display: block;">
         <h1>How to play:</h1>
@@ -16,11 +19,11 @@
 
         <div class="letters" id="static-letters">
             <div class="letter static">A</div>
-            <div class="letter static">F</div>
+            <div class="letter static">B</div>
             <div class="letter static">C</div>
             <div class="letter static">D</div>
             <div class="letter static">E</div>
-            <div class="letter static">G</div>
+            <div class="letter static">F</div>
         </div>
 
         <button id="start-button">Start</button>
@@ -28,9 +31,18 @@
 
     <div class="container" id="game-container" style="display: none;">
         <h1>Anagrams</h1>
-        <div class="timer">00:00</div>
-        <div class="words">Words: 0</div>
-        <div class="score">Score: 0000</div>
+        <div class="count-line" style="margin-bottom: 20px;">
+            <div class="time" id="minutes" style="text-align: right;">00:</div>
+            <div class="time" id="seconds" style="text-align: left;">00</div>
+        </div>
+        <div class="count-line">
+            <div class="words" id="text" style="text-align: right;">Words: </div>
+            <div class="words" id="game" style="text-align: left;">0</div>
+        </div>
+        <div class="count-line">
+            <div class="score" id="text" style="text-align: right;">Score:</div>
+            <div class="score" id="game" style="text-align: left;">0000</div>
+        </div>
         <br>
         <div class="message"></div>
         <br>
@@ -45,14 +57,21 @@
 
     <div class="container" id="result-container" style="display: none;">
         <h1>Time's Up!</h1>
-        <div class="words" id="final-word-count">Words: 0</div>
-        <div class="score" id="final-score">Your Score: 0000</div>
+        <div class="count-line" id="final">
+            <div class="words" id="text" style="text-align: right;">Words: </div>
+            <div class="words" id="final-count" style="text-align: left;">0 </div>
+        </div>
+        <div class="count-line" id="final">
+            <div class="score" id="text" style="text-align: right;">Score:</div>
+            <div class="score" id="final-score" style="text-align: left;">0000</div>
+        </div>
         <div class="scrollable-box">
             <!-- Your scrollable content goes here -->
         </div>
-        <button id="play-again-button" onclick="location.href='index.html';">Play Again</button>
+        <button id="play-again-button" onclick="location.reload();">Play Again</button>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
