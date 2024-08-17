@@ -297,7 +297,6 @@ function updateMessage(message, color = 'black') {
     const word = currentWord.map(item => item.letter).join('').toUpperCase();
     messageDiv.innerText = `${word} (${message})`;
     messageDiv.style.color = color;
-    console.log(messageDiv.style.color);
     messageDiv.classList.add('show');
 
     // Schedule the fade-out process

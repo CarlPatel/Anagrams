@@ -101,7 +101,7 @@ h1 {
 }
 
 p {
-    margin-bottom: 20px;
+    margin: 20px auto;
     font-weight: bold;
 }
 
@@ -215,6 +215,7 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 15px auto 15px auto;
 }
 
 .message.show {
