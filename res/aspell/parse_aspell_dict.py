@@ -21,6 +21,6 @@ def filter_words(input_file, output_file, max_word_length):
 
 if __name__ == "__main__":
     input_file = 'all_aspell_words.txt'
-    output_file = 'valid_dict_words.txt'
+    output_file = 'valid_aspell_words.txt'
     max_word_length = 999999                # Set the maximum word length
     filter_words(input_file, output_file, max_word_length)

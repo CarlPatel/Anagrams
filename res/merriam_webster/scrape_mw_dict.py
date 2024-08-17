@@ -42,9 +42,7 @@ def append_to_file(filename, words, seen_words):
                 file.write(f"{word.upper}\n")
                 seen_words.add(word.upper())  # Add the uppercase version of the word to the set of seen words
 
-def scrape_dictionary_by_alphabet():
-    base_url = "https://www.merriam-webster.com/browse/dictionary/"
-    output_file = "valid_words.txt"
+def scrape_dictionary_by_alphabet(base_url, output_file):
     seen_words = set()  # A set to store words that have already been added
     
     # Clear the content of the file by opening in write mode
@@ -74,4 +72,6 @@ def scrape_dictionary_by_alphabet():
 
 # Run the scraper
 if __name__ == "__main__":
-    scrape_dictionary_by_alphabet()
+    base_url = "https://www.merriam-webster.com/browse/dictionary/"
+    output_file = 'valid_dict_words.txt'
+    scrape_dictionary_by_alphabet(base_url, output_file)

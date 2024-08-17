@@ -2,7 +2,7 @@
 
 GNU Aspell is a Free and Open Source spell checker that includes multiple dictionaries.
 
-This guide provides instructions on how to download the Aspell dictionary and how to parse it in order to get all valid anagram words. 
+This guide provides instructions on how to extract the Aspell dictionary and parse it to get all valid anagram words. 
 
 # Aspell Installation
 ## Prerequisites
