@@ -1,6 +1,6 @@
 let numOfLetters = 6;
 let score = 0;
-let timer = 60;  // in seconds
+let timer = 6;  // in seconds
 let currentWord = [];
 let randLetters = [];
 let usedWords = new Set();
@@ -8,6 +8,8 @@ let validWords = new Set();
 let timerInterval;
 let messageTimeout;
 let revealAnagrams = false;
+
+let green = '#00cc00';
 
 fetch("res/aspell/valid_aspell_words.txt")
     .then(response => {
@@ -92,12 +94,12 @@ function initGame() {
                 const wordScore = calculateScore(word);
                 score += wordScore;
                 updateScoreDisplay();
-                updateMessage(`+${wordScore}`, 'green');
+                updateMessage(`+${wordScore}`, 'var(--color-green)');
             } else {
-                updateMessage('Not in the vocabulary', 'red');
+                updateMessage('Not in the vocabulary', 'var(--color-red)');
             }
         } else {
-            updateMessage('Already used', 'red');
+            updateMessage('Already used', 'var(--color-red)');
         }
         resetSlots();
     });
@@ -294,6 +296,7 @@ function updateMessage(message, color = 'black') {
     const word = currentWord.map(item => item.letter).join('').toUpperCase();
     messageDiv.innerText = `${word} (${message})`;
     messageDiv.style.color = color;
+    console.log(messageDiv.style.color);
     messageDiv.classList.add('show');
 
     // Schedule the fade-out process

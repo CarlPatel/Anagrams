@@ -1,7 +1,30 @@
+:root {
+    --color-text: #000000;
+    --color-background: #F1F1F1;
+    --color-background-secondary: #E4E4E4;
+    --color-shadow: #00000050;
+    --color-disabled: #00000025;
+    --color-green: #00AA00;
+    --color-red: #DD0000;
+}
+  
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #FFFFFF;
+        --color-background: #4C4C4C;
+        --color-background-secondary: #1D1D1D;
+        --color-shadow: #FFFFFF50;
+        --color-disabled: #FFFFFF25;
+        --color-green: #00CC00;
+        --color-red: #FF0000;
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    color: var(--color-text);
+    background-color: var(--color-background);
     margin: 0;
     padding: 0;
     display: flex;
@@ -17,13 +40,12 @@ body {
     max-height: 1000px;
     margin: auto;
     padding: 15px;
-    background-color: #ffffff;
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+    background-color: var(--color-background-secondary);
     border-radius: 10px;
 }
 
 .scrollable-box {
-    width: 50%;
+    width: 60%;
     max-height: 25vh;
 
     margin: auto;
@@ -32,6 +54,7 @@ body {
     cursor: default;
 
     overflow-y: scroll;
+    overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -52,7 +75,7 @@ body {
 }
 
 .anagram-line-break {
-    border: 1px solid black;
+    border: 1px solid var(--color-text);
     width: 75%;
     margin: 20px auto;
 
@@ -77,8 +100,7 @@ p {
     font-family: Consolas, "Lucida Console", monospace;
 }
 
-.words,
-.score {
+.words, .score {
     font-size: 18px;
     margin: 0 auto 5px auto;
     text-align: left;
@@ -96,26 +118,25 @@ p {
 .slot {
     width: 40px;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.25);
-    box-shadow: inset 0 0 10px #000;
+    background-color: transparent;
+    box-shadow: inset 0 0 15px var(--color-disabled);
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-disabled);
 }
 
 .slot.filled {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid #00000050;
     line-height: 40px;
     font-size: 24px;
     font-weight: bold;
-    color: #000;
+    color: #000000;
     cursor: pointer;
     text-align: center;
     font-family: "Arial", sans-serif;
     background-color: #f2d28b;
-    /* Light wood color */
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 3px 3px var(--color-shadow);
     border-radius: 5px;
 }
 
@@ -132,7 +153,7 @@ p {
 .letter {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid #00000050;
     line-height: 40px;
     font-size: 24px;
     font-weight: bold;
@@ -141,15 +162,14 @@ p {
     text-align: center;
     font-family: "Arial", sans-serif;
     background-color: #f2d28b;
-    /* Light wood color */
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 3px 3px var(--color-shadow);
     border-radius: 5px;
 }
 
 .letter.hidden {
     color: transparent;
     background-color: transparent;
-    border: dashed 1px rgba(0, 0, 0, 0.5);
+    border: dashed 1px var(--color-shadow);
     pointer-events: none;
     box-shadow: none;
 }
@@ -158,42 +178,28 @@ button {
     padding: 10px 30px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #33CC00;
     color: white;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 5px 5px #999;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-    box-shadow: 0 6px 5px #666;
-}
-
-button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 2px 5px #666;
-    transform: translateY(2px);
+    box-shadow: 0 3px 3px var(--color-shadow);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 button:disabled {
     pointer-events: none;
     box-shadow: none;
-    background-color: rgba(0, 0, 0, 0.25);
-    color: rgba(0, 0, 0, 0.25);
+    background-color: var(--color-disabled);
+    color: #000000;
 }
 
 .message {
     height: 30px;
-    /* Adjust the height as needed */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    /* Adjust the font size as needed */
 }
 
 .message.show {
