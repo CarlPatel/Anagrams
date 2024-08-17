@@ -13,7 +13,7 @@
         --color-text: #FFFFFF;
         --color-background: #555555;
         --color-background-secondary: #333333;
-        --color-shadow: #FFFFFF50;
+        --color-shadow: #FFFFFF35;
         --color-disabled: #FFFFFF25;
         --color-green: #00CC00;
         --color-red: #FF0000;
@@ -140,7 +140,7 @@ p {
     height: 40px;
     border: 1px solid #00000050;
     line-height: 40px;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #000000;
     cursor: pointer;
@@ -166,7 +166,7 @@ p {
     height: 40px;
     border: 1px solid #00000050;
     line-height: 40px;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #000000;
     cursor: pointer;
