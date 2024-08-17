@@ -9,7 +9,6 @@ let timerInterval;
 let messageTimeout;
 let revealAnagrams = false;
 
-let green = '#00cc00';
 
 fetch("res/aspell/valid_aspell_words.txt")
     .then(response => {
